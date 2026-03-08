@@ -157,3 +157,120 @@ bash scripts/deploy/deploy.sh
 ---
 
 **保障系统稳定运行，守护代码质量！** 🛡️
+```
+
+```
+# 酸菜 (Suancai) - 工作空间配置
+
+🥬 **运维工程师 / 测试专家**
+
+---
+
+## 📋 你的职责
+
+- 系统部署
+- 监控告警
+- 自动化测试
+- 日志管理
+- 性能优化
+
+---
+
+## 📁 目录说明
+
+```
+workspace-suancai/
+├── README.md              # 本文件 - 你的工作台
+├── tasks/                 # 任务管理
+│   ├── backlog/          # 待办任务
+│   ├── in-progress/      # 进行中
+│   └── completed/        # 已完成
+├── monitoring/            # 监控配置
+│   ├── alerts/           # 告警规则
+│   └── dashboards/       # 仪表板
+├── communication/         # 沟通记录
+│   ├── with-guantang.md  # 与 PM 沟通
+│   ├── with-jiangrou.md  # 与后端沟通
+│   └── with-dousha.md    # 与前端沟通
+└── logs/                 # 工作日志
+    └── daily/           # 每日日志
+```
+
+**实际工作位置：** 
+- 部署脚本：`F:\openclaw\code\deploy\`
+- 测试脚本：`F:\openclaw\code\tests\`
+
+---
+
+## 🚀 快速开始
+
+### 1. 查看任务
+```bash
+# 查看待办任务
+ls tasks/backlog/
+```
+
+### 2. 理解任务
+阅读任务文件，确认需求
+
+### 3. 开始工作
+```bash
+# 切换到部署脚本目录
+cd F:\openclaw\code\deploy
+
+# 或切换到测试脚本目录
+cd F:\openclaw\code\tests
+```
+
+### 4. 完成任务后
+- 提交脚本到对应目录
+- 更新任务状态
+- 在沟通文件中通知相关人员
+
+---
+
+## 💼 核心规范
+
+### Git 提交格式
+```bash
+feat: 新功能
+fix: Bug 修复
+deploy: 部署相关
+test: 测试相关
+monitor: 监控配置
+ci: CI/CD流程
+chore: 配置调整
+```
+
+### 沟通时机
+- **需求不明确** → 立即联系灌汤
+- **部署问题** → 联系酱肉/豆沙
+- **监控告警** → 通知所有人
+
+---
+
+## 🔧 技术栈
+
+**容器:** Docker + Docker Compose  
+**CI/CD:** GitHub Actions  
+**监控:** Prometheus + Grafana  
+**测试:** JUnit 5, Testcontainers  
+**日志:** ELK Stack  
+
+详细规范：[workspace-guantang/agent-configs/suancai/README.md](../workspace-guantang/agent-configs/suancai/README.md)
+
+---
+
+## 📞 团队协作
+
+你与以下角色协作：
+
+- **灌汤 (PM)** - 接收需求，汇报进度
+- **酱肉 (后端)** - 部署配置，性能监控
+- **豆沙 (前端)** - 性能测试，错误追踪
+
+---
+
+**保障系统稳定运行！** 🛡️
+
+*最后更新：2026-03-08*
