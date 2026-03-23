@@ -1,0 +1,27 @@
+{
+  "server": {
+    "ip": "YOUR_SERVER_IP",
+    "port": 22,
+    "user": "root",
+    "password": "YOUR_PASSWORD"
+  },
+  "mysql": {
+    "host": "localhost",
+    "port": 3306,
+    "user": "root",
+    "password": "",
+    "database": "blog_system"
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "password": ""
+  },
+  "paths": {
+    "backendJar": "F:\\openclaw\\code\\backend\\target\\backend-1.0.0-SNAPSHOT.jar",
+    "frontendDist": "F:\\openclaw\\code\\frontend\\dist",
+    "remoteBackend": "/opt/baozipu/backend",
+    "remoteFrontend": "/opt/baozipu/frontend",
+    "remoteBackup": "/opt/baozipu/backup"
+  }
+}

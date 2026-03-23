@@ -1,0 +1,5 @@
+
+# 敏感配置（不上传）
+deploy-config.json
+.local/
+
