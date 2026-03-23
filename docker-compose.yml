@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: openclaw-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-openclaw_root}
+      MYSQL_DATABASE: openclaw
+      MYSQL_USER: openclaw
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-openclaw_pass}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - openclaw-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API (Spring Boot)
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: openclaw-backend
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: openclaw
+      DB_USER: openclaw
+      DB_PASSWORD: ${MYSQL_PASSWORD:-openclaw_pass}
+      JWT_SECRET: ${JWT_SECRET:-change_this_secret_key}
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - openclaw-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend (Vue 3)
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: openclaw-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - openclaw-network
+
+networks:
+  openclaw-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
